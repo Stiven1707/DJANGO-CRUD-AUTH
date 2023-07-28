@@ -2,8 +2,15 @@
 {% block titulo %} Home {% endblock %}
 
 {% block contenido %}
-<div class="card-body">
-  <h4 class="card-title">Welcome to Django</h4>
-  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus officiis dignissimos minima fugit laboriosam? Ducimus maiores molestias dolor rerum odio. Dignissimos iure modi dolor alias distinctio nesciunt sapiente saepe harum?</p>
-  </div>
+<main class="container py-5">
+  
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container py-5">
+        <h1 class="display-1 text-center fw-bold">Django app by Kjimenez</h1>
+        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+        <a href="{% url 'signup' %}" class="btn btn-secondary btn-lg">signup</a>
+        <a href="{% url 'signin' %}" class="btn btn-dark btn-lg">signin</a>
+      </div>
+      </div>
+</main>
 {% endblock %}
