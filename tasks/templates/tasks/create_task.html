@@ -2,16 +2,20 @@
 {% block titulo %} Create task {% endblock %}
 
 {% block contenido %}
-    <h1>Create task</h1>
-    <form  method="POST">
-        {% csrf_token %}
-        {% if error %}
-        <p class="alert alert-danger">
-            {{error}}
-        </p>
-        {% endif %}
-
-        {{form.as_p}}
-        <button type="submit">Create task</button>
-    </form>
+    <main class="container">
+        <div class="col-md-4 offset-md-4">
+            <form  method="POST" class="card card-body ">
+                <h1>Create task</h1>
+                {% csrf_token %}
+                {% if error %}
+                <p class="alert alert-danger">
+                    {{error}}
+                </p>
+                {% endif %}
+        
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary mt-3">Create task</button>
+            </form>
+        </div>
+    </main>
 {% endblock %}
