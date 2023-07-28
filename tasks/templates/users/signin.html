@@ -2,8 +2,9 @@
 {% block titulo %} signin {% endblock %}
 
 {% block contenido %}
-    <h1>Signin</h1>
-    <form  method="POST">
+<div class="col-md-4 offset-md-4">
+    <form  method="POST" class="card card-body ">
+        <h1 class="text-center">Signin</h1>
         {% csrf_token %}
         {% if error %}
         <p class="alert alert-danger">
@@ -11,7 +12,7 @@
         </p>
         {% endif %}
 
-        {{form.as_p}}
-        <button type="submit">Signin</button>
+        {{form}}
+        <button type="submit" class="btn btn-primary mt-3">Signin</button>
     </form>
 {% endblock %}
