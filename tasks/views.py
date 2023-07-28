@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 
+from .forms import TaskForm
+
 # Create your views here.
 def home(request):
     return render(request, 'pages/home.html')
@@ -60,5 +62,15 @@ def signin(request):
         return render(request, 'users/signin.html',{'form': AuthenticationForm()})
 def tasks(request):
     return render(request, 'tasks/tasks.html')
+def create_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            return redirect('tasks')
+    else:
+        return render(request, 'tasks/create_task.html', {
+        'form': TaskForm()
+        }
+    )
 
     

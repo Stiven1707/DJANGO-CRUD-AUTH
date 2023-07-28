@@ -1,0 +1,17 @@
+{% extends "Layouts/base.html"%}
+{% block titulo %} Create task {% endblock %}
+
+{% block contenido %}
+    <h1>Create task</h1>
+    <form  method="POST">
+        {% csrf_token %}
+        {% if error %}
+        <p class="alert alert-danger">
+            {{error}}
+        </p>
+        {% endif %}
+
+        {{form.as_p}}
+        <button type="submit">Create task</button>
+    </form>
+{% endblock %}
