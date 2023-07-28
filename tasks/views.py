@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 
+from .models import Task
+
 from .forms import TaskForm
 
 # Create your views here.
@@ -61,7 +63,9 @@ def signin(request):
     else:
         return render(request, 'users/signin.html',{'form': AuthenticationForm()})
 def tasks(request):
-    return render(request, 'tasks/tasks.html')
+    tasks = Task.objects.filter(user=request.user, date_completed__isnull=True)
+    
+    return render(request, 'tasks/tasks.html', {'tasks': tasks})
 def create_task(request):
     if request.method == 'POST':
         try:

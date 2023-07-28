@@ -4,6 +4,23 @@
 {% block contenido %}
 <div class="card-body">
   <h4 class="card-title">Tasks</h4>
-  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus officiis dignissimos minima fugit laboriosam? Ducimus maiores molestias dolor rerum odio. Dignissimos iure modi dolor alias distinctio nesciunt sapiente saepe harum?</p>
-  </div>
+  <ul>
+    {% for task in tasks %}
+    <li>
+      {% if task.important == True %}
+      <p>
+        <strong class="text-danger" > {{ task.title }} </strong>
+      </p>
+      
+      {% else %}
+      <p>
+        {{ task.title }}
+      </p>
+      {% endif %}
+      <p> {{ task.description }} </p>
+      <p> {{ task.user }} </p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}
