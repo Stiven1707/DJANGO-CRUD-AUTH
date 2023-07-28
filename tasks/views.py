@@ -39,3 +39,8 @@ def signup(request):
 
 def tasks(request):
     return render(request, 'tasks/tasks.html')
+
+def logout(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('home')
