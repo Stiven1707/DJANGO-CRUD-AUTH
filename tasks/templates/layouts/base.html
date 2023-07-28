@@ -38,7 +38,10 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link {% if request.resolver_match.view_name == 'tasks' %}active{% endif %}" href="{% url 'tasks' %}">tasks</a>
+                <a class="nav-link {% if request.resolver_match.view_name == 'tasks' %}active{% endif %}" href="{% url 'tasks' %}">tasks pending</a>
+            </li>
+            <li>
+                <a class="nav-link {% if request.resolver_match.view_name == 'tasks_completed' %}active{% endif %}" href="{% url 'tasks_completed' %}">tasks completed</a>
             </li>
             <li>
                 <a class="nav-link {% if request.resolver_match.view_name == 'create_task' %}active{% endif %}" href="{% url 'create_task' %}">create task</a>
