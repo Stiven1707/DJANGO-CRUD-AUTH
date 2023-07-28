@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 from django.utils import timezone
 
@@ -42,8 +43,7 @@ def signup(request):
             
             }
         )
-
-
+@login_required
 def signout(request):
     logout(request)
     return redirect('home')
@@ -65,6 +65,7 @@ def signin(request):
             return redirect('tasks')
     else:
         return render(request, 'users/signin.html',{'form': AuthenticationForm()})
+@login_required
 def tasks(request):
     tasks = Task.objects.filter(user=request.user, date_completed__isnull=True)
     
@@ -72,7 +73,7 @@ def tasks(request):
 def tasks_completed(request):
     tasks = Task.objects.filter(user=request.user, date_completed__isnull=False).order_by('-date_completed')
     return render(request, 'tasks/tasks.html', {'tasks': tasks})
-
+@login_required
 def create_task(request):
     if request.method == 'POST':
         try:
@@ -92,6 +93,7 @@ def create_task(request):
         'form': TaskForm()
         }
     )
+@login_required
 def task_detail(request, task_id):
     if request.method == 'GET':
         task = get_object_or_404(Task, pk=task_id, user=request.user)
@@ -114,12 +116,14 @@ def task_detail(request, task_id):
                 'error': 'Bad info'
                 }
             )
+@login_required
 def complete_task(request, task_id):
     if request.method == 'POST':
         task = get_object_or_404(Task, pk=task_id, user=request.user)
         task.date_completed = timezone.now()
         task.save()
         return redirect('tasks')
+@login_required
 def delete_task(request, task_id):
     if request.method == 'POST':
         task = get_object_or_404(Task, pk=task_id, user=request.user)
