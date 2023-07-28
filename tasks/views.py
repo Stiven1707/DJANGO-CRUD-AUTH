@@ -64,9 +64,18 @@ def tasks(request):
     return render(request, 'tasks/tasks.html')
 def create_task(request):
     if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
+        try:
+            form = TaskForm(request.POST)
+            new_task = form.save(commit=False)
+            new_task.user = request.user
+            new_task.save()
             return redirect('tasks')
+        except ValueError:
+            return render(request, 'tasks/create_task.html', {
+                'form': TaskForm(),
+                'error': 'Bad data passed in. Try again'
+                }
+            )
     else:
         return render(request, 'tasks/create_task.html', {
         'form': TaskForm()
