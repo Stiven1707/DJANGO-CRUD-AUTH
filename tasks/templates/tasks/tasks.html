@@ -7,6 +7,9 @@
   <ul>
     {% for task in tasks %}
     <li>
+      <a href="{% url 'task_detail' task.id %}">
+        <img src="https://img.icons8.com/ios/50/000000/edit.png" width="20" height="20" alt="edit">
+      </a>
       {% if task.important == True %}
       <p>
         <strong class="text-danger" > {{ task.title }} </strong>

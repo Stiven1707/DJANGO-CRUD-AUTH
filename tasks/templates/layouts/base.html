@@ -36,10 +36,13 @@
             <li class="nav-item">
               <a class="nav-link {% if request.resolver_match.view_name == 'home' %}active{% endif %}" href="{% url 'home' %}">home</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link {% if request.resolver_match.view_name == 'tasks' %}active{% endif %}" href="{% url 'tasks' %}">tasks</a>
             </li>
-            {% if user.is_authenticated %}
+            <li>
+                <a class="nav-link {% if request.resolver_match.view_name == 'create_task' %}active{% endif %}" href="{% url 'create_task' %}">create task</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link {% if request.resolver_match.view_name == 'signout' %}active{% endif %}" href="{% url 'signout' %}">signout</a>
             </li>

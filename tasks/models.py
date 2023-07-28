@@ -11,3 +11,4 @@ class Task(models.Model):
     user = models.ForeignKey('auth.User', related_name='tasks', on_delete=models.CASCADE)
     def __str__(self):
         return self.title + ' | by ' + str(self.user.username)
+    

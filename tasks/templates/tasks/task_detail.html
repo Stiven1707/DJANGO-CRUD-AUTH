@@ -1,0 +1,19 @@
+{% extends "Layouts/base.html"%}
+{% block titulo %} Task Detail {% endblock %}
+
+{% block contenido %}
+<div class="card-body">
+  <h4 class="card-title">Task Detail</h4>
+  <form  method="POST">
+    {% csrf_token %}
+    {% if error %}
+    <p class="alert alert-danger">
+        {{error}}
+    </p>
+    {% endif %}
+
+    {{form.as_p}}
+    <button type="submit">Update</button>
+</form>
+</div>
+{% endblock %}
