@@ -3,5 +3,8 @@
 
     {% csrf_token %}
     {{form.as_p}}
+    <p>
+        {{error}}
+    </p>
     <button type="submit">Signup</button>
 </form>
