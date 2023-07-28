@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 
@@ -37,10 +37,28 @@ def signup(request):
         )
 
 
+def signout(request):
+    logout(request)
+    return redirect('home')
+def signin(request):
+    if request.method == 'POST':
+        user = authenticate(
+            request,
+            username=request.POST['username'],
+            password=request.POST['password']
+        )
+        if user is None:
+            return render(request, 'users/signin.html', {
+                'form': AuthenticationForm(),
+                'error': 'Username or password did not match'
+                }
+            )
+        else:
+            login(request, user)
+            return redirect('tasks')
+    else:
+        return render(request, 'users/signin.html',{'form': AuthenticationForm()})
 def tasks(request):
     return render(request, 'tasks/tasks.html')
 
-def logout(request):
-    if request.method == 'POST':
-        logout(request)
-        return redirect('home')
+    

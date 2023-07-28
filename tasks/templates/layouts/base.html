@@ -41,13 +41,14 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link {% if request.resolver_match.view_name == 'logout' %}active{% endif %}" href="{% url 'logout' %}">logout</a>
+                <a class="nav-link {% if request.resolver_match.view_name == 'signout' %}active{% endif %}" href="{% url 'signout' %}">signout</a>
             </li>
             {% else %}
             <li class="nav-item">
                 <a class="nav-link {% if request.resolver_match.view_name == 'signup' %}active{% endif %}" href="{% url 'signup' %}">signup</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.view_name == 'signin' %}active{% endif %}" href="{% url 'signin' %}">signin</a>
             {% endif %}
             <!-- 
             Agrega más elementos de menú si es necesario -->
